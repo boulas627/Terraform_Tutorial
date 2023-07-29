@@ -19,3 +19,7 @@ This is an example of how to deploy infrastructure using Terraform and in this e
 # Deploy S3 Bucket Using Terraform
 
 I was successfully able to create an S3 bucket called "my-s3bucket" by running this script. For this portion of the code I would like to give credit to Coach DevOps and the link that I followed was https://www.coachdevops.com/2021/07/terraform-create-s3-bucket-example-how_12.html. I did not specify my AWS Access Key or Secret Access Key anywhere in my files as I declared these as environment variables by using the command prompt. 
+
+#Is this showing up? 
+
+Here we Go?
