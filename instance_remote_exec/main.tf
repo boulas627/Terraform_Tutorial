@@ -18,8 +18,23 @@ resource "aws_instance" "app_server" {
   ami = "ami-08d70e59c07c61a3a"
   instance_type = "t2.micro"
 
+  provisioner "file" {
+    source = "script.sh"
+    destination = "/tmp/script.sh"
+  }
+
+  provisioner "remote-exec" {
+    inline = [ 
+        "chmod +x /tmp/script.sh",
+        "/tmp/script.sh",
+     ]
+    
+  }
+
   tags = {
     # Name = "ExampleAppServerInstance"
     Name = var.instance_name
   }
 }
+
+# uses this link: https://developer.hashicorp.com/terraform/language/resources/provisioners/remote-exec
