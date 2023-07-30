@@ -18,18 +18,31 @@ resource "aws_instance" "app_server" {
   ami = "ami-08d70e59c07c61a3a"
   instance_type = "t2.micro"
 
-  provisioner "file" {
-    source = "script.sh"
-    destination = "/tmp/script.sh"
+#   provisioner "file" {
+#     source = "/script.sh"
+#     destination = "/script.sh"
+#   }
+
+  connection {
+    type     = "ssh"
+    user     = "developer_1"
+    # password = var.root_password
+    password = ""
+    host     = aws_instance.app_server.public_ip
+    timeout = "1m"
+    # host = var.instance_public_ip
   }
 
-  provisioner "remote-exec" {
-    inline = [ 
-        "chmod +x /tmp/script.sh",
-        "/tmp/script.sh",
-     ]
+  provisioner "local-exec" {
+    command = "echo 'Virtual machine created'"
     
   }
+  
+#   provisioner "remote-exec" {
+#     inline = [ 
+#         "sudo apt-get update",
+#      ]
+    
 
   tags = {
     # Name = "ExampleAppServerInstance"
